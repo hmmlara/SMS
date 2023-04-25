@@ -28,6 +28,12 @@ class CreateTimetablesTable extends Migration
                 ->on('programs')
                 ->onDelete('cascade');
 
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')
+                ->references('id')
+                ->on('courses')
+                ->onDelete('cascade');
+
             $table->string('semester');
             $table->date('day');
             $table->time('time_slot');
