@@ -42,6 +42,7 @@ class CreateStudentPersonalsTable extends Migration
             $table->enum('gender', ['Male', 'Female']);
             $table->string('highest_education');
             $table->string('hight_school_name');
+            $table->date('exam_pass_date');
             $table->enum('working_experience_status', ['Yes', 'No'])->default('No');
             $table->string('nrc_file');
             $table->string('graducation_certificate')->nullable();
