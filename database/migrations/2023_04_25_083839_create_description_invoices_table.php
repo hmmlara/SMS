@@ -17,13 +17,13 @@ class CreateDescriptionInvoicesTable extends Migration
             //
             $table->id();
 
-            $table->unsignedInteger('description_id');
+            $table->unsignedBigInteger('description_id');
             $table->foreign('description_id')
                 ->references('id')
                 ->on('descriptions')
                 ->onDelete('cascade');
 
-            $table->unsignedInteger('invoice_id');
+            $table->unsignedBigInteger('invoice_id');
             $table->foreign('invoice_id')
                 ->references('id')
                 ->on('invoices')

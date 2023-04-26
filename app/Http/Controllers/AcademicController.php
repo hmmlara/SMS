@@ -15,6 +15,7 @@ class AcademicController extends Controller
     public function index()
     {
         //
+        return view('HMM.hmm.academic.index');
     }
 
     /**

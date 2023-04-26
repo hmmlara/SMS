@@ -1,0 +1,56 @@
+body{
+    background: #dddddd;
+}
+.btn{
+    border: none;
+}
+.btn:focus{
+    box-shadow: none !important;
+    outline: none !important;
+}
+.dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+/* hidden focus outline in searh input */
+.search{
+    border-bottom: 1px solid #d6d6d6;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.search:focus{
+    box-shadow: none;
+    border-bottom: 1px solid #111;
+}
+.search-component{
+    border-bottom: 1px solid #d6d6d6;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.search-component:focus{
+    box-shadow: none;
+    border-bottom: 1px solid #111;
+}
+
+.search-form-group{
+    position: relative;
+}
+.search-form-group i{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+.home-container{
+    width: 75%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+a{
+    text-decoration: none;
+}
