@@ -15,6 +15,9 @@ class DescriptionController extends Controller
     public function index()
     {
         //
+        $descriptions = Description::orderBy('id', 'DESC')->get();
+
+        return view('HMM.payment.description.index', ['descriptions' => $descriptions]);
     }
 
     /**
@@ -25,6 +28,7 @@ class DescriptionController extends Controller
     public function create()
     {
         //
+        return view('HMM.payment.description.create');
     }
 
     /**
@@ -36,6 +40,11 @@ class DescriptionController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(["title" => "required"]);
+
+        if (Description::create($request->all())) {
+            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
+        }
     }
 
     /**
@@ -58,6 +67,7 @@ class DescriptionController extends Controller
     public function edit(Description $description)
     {
         //
+        return view('HMM.payment.description.view', ['description' => $description]);
     }
 
     /**
@@ -70,6 +80,17 @@ class DescriptionController extends Controller
     public function update(Request $request, Description $description)
     {
         //
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        if ($description->update($request->all())) {
+
+            return response()->json([
+                'status' => 204,
+                'message' => 'Successfully Updated'
+            ],200);
+        }
     }
 
     /**
@@ -81,5 +102,8 @@ class DescriptionController extends Controller
     public function destroy(Description $description)
     {
         //
+        if ($description->delete()) {
+            return redirect()->route('payment.description.index');
+        }
     }
 }
