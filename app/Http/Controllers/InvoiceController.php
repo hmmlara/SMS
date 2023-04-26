@@ -15,6 +15,7 @@ class InvoiceController extends Controller
     public function index()
     {
         //
+        return view('HMM.payment.invoice.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class InvoiceController extends Controller
     public function create()
     {
         //
+        return view('HMM.payment.invoice.create');
     }
 
     /**
