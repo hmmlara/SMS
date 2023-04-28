@@ -36,16 +36,12 @@
                     </li>
                 @elseif (request()->segment(2) == 'payment')
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(3) == 'invoice' ? 'active' : '' }}"
-                            href="{{ route('payment.invoice.index') }}">Invoice</span></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ request()->segment(3) == 'description' ? 'active' : '' }}"
                             href="{{ route('payment.description.index') }}">Description</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(3) == 'payment' ? 'active' : '' }}"
-                            href="#">Payment</span></a>
+                            href="{{ route('payment.payment.index') }}">Payment</span></a>
                     </li>
                 @endif
             </ul>
