@@ -27,7 +27,7 @@ class HomeController extends Controller
         return "exam";
     }
     public function payment(){
-        return redirect()->route('payment.invoice.index');
+        return redirect()->route('payment.description.index');
     }
 
     public function setting(){
