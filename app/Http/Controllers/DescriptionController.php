@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Description;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class DescriptionController extends Controller
 {
     /**
@@ -40,7 +42,11 @@ class DescriptionController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate(["title" => "required"]);
+        $request->validate([
+            'title' => 'required',
+            'units' => 'required | numeric',
+            'cost' => 'required | numeric'
+        ]);
 
         if (Description::create($request->all())) {
             return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
@@ -82,6 +88,8 @@ class DescriptionController extends Controller
         //
         $request->validate([
             'title' => 'required',
+            'units' => 'required | numeric',
+            'cost' => 'required | numeric'
         ]);
 
         if ($description->update($request->all())) {

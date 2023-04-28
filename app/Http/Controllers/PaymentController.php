@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Description;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         //
+        return view('HMM.payment.payment.index');
     }
 
     /**
@@ -25,6 +27,8 @@ class PaymentController extends Controller
     public function create()
     {
         //
+        $descriptions = Description::all();
+        return view('HMM.payment.payment.create',['descriptions' => $descriptions]);
     }
 
     /**
