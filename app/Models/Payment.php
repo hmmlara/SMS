@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'student_person_id',
+        'invoice_no',
+        'invoice_date',
+    ];
+
+    public function descriptions(){
+        return $this->belongsToMany(Description::class,"description_payments");
+    }
 }
