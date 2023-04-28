@@ -1,11 +1,11 @@
 @extends('HMM.layouts.app')
 
 @section('content')
-    <h3 class="mt-2"><i><strong>Description</strong></i></h3>
+    <h3 class="mt-2"><i><strong>Payment</strong></i></h3>
 
     <div class="row">
         <div class="col-8">
-            <a href="{{ route('payment.description.create') }}" class="btn btn-sm btn-success text-uppercase"
+            <a href="{{ route('payment.payment.create') }}" class="btn btn-sm btn-success text-uppercase"
                 style="width: 10rem;height: 30px;"><strong>create</strong></a>
         </div>
 
@@ -42,7 +42,7 @@
 
     {{-- loop data  --}}
     <div class="row">
-        @foreach ($descriptions as $description)
+        {{-- @foreach ($descriptions as $description)
             <div class="col-4">
                 <a href="{{ route('payment.description.edit', $description->id) }}" class="text-decoration-none text-dark">
                     <div class="card p-4 mb-3">
@@ -52,7 +52,7 @@
                     </div>
                 </a>
             </div>
-        @endforeach
+        @endforeach --}}
     </div>
     {{-- loop data --}}
 @endsection
