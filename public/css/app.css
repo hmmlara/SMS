@@ -54,3 +54,15 @@ body{
 a{
     text-decoration: none;
 }
+
+.form-control{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.form-control:focus{
+    box-shadow: none;
+    border-bottom: 1px solid #111;
+}
