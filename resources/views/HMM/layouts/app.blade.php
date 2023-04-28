@@ -9,15 +9,17 @@
 
     <link rel="shortcut icon" href="{{ asset('img/HMM-logo.jpg') }}" type="image/jpg">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}" />
 
     {{-- style --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/datatable.min.css') }}">
 
     {{-- script --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/datatable.min.js') }}"></script>
 
     @if (request()->segment(2) != 'home')
         <style>
