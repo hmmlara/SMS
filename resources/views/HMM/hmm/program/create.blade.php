@@ -1,27 +1,27 @@
 @extends('HMM.layouts.app')
 
 @section('content')
-    <h3 class="mt-2"><i><strong>Academic Year</strong></i></h3>
+    <h3 class="mt-2"><i><strong>Program</strong></i></h3>
 
     <button class="btn btn-sm btn-success text-uppercase" style="width: 10rem;height: 30px;"
         id="save"><strong>Save</strong></button>
-    <a href="{{ route('hmm.academic.index') }}" class="btn btn-sm btn-light text-uppercase"
+    <a href="{{ route('hmm.program.index') }}" class="btn btn-sm btn-light text-uppercase"
         style="width: 10rem;height: 30px;"><strong>Discard</strong></a>
 
     <hr>
 
     <div class="card p-3">
         <div class="card-content">
-            <h4 class="mb-3"><strong>New Academic Year</strong></h4>
+            <h4 class="mb-3"><strong>New Program</strong></h4>
         </div>
         <div class="row">
             <div class="form-group d-flex">
-                <label for="" class="form-label me-2">Academic Year: </label>
+                <label for="" class="form-label me-2">Title: </label>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="input-gp w-100">
                     <input type="text" name="name" id="" class="form-control w-50" style="height: 30px;"
-                        placeholder="Enter academic year">
+                        placeholder="Enter program title">
                     <small class="text-danger" id="error-msg"></small>
                 </div>
             </div>
@@ -46,11 +46,11 @@
             // console.log(data);
             $.ajax({
                 type: "POST",
-                url: "/hmm-group/hmm/academic",
+                url: "/hmm-group/hmm/program",
                 data: data,
                 success: function(response) {
                     if (response.status == 201) {
-                        window.location.href = '/hmm-group/hmm/academic';
+                        window.location.href = '/hmm-group/hmm/program';
                     }
                 },
                 error: function(response) {

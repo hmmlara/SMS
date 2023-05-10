@@ -15,7 +15,9 @@ class AcademicController extends Controller
     public function index()
     {
         //
-        return view('HMM.hmm.academic.index');
+        $academics = Academic::orderBy('id', 'DESC')->get();
+
+        return view('HMM.hmm.academic.index', ['academics' => $academics]);
     }
 
     /**
@@ -26,6 +28,8 @@ class AcademicController extends Controller
     public function create()
     {
         //
+        return view('HMM.hmm.academic.create');
+
     }
 
     /**
@@ -37,6 +41,11 @@ class AcademicController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(["name" => "required"]);
+
+        if (Academic::create($request->all())) {
+            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
+        }
     }
 
     /**
@@ -59,6 +68,8 @@ class AcademicController extends Controller
     public function edit(Academic $academic)
     {
         //
+        return view('HMM.hmm.academic.view', ['academic' => $academic]);
+
     }
 
     /**
@@ -71,6 +82,17 @@ class AcademicController extends Controller
     public function update(Request $request, Academic $academic)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        if ($academic->update($request->all())) {
+
+            return response()->json([
+                'status' => 204,
+                'message' => 'Successfully Updated'
+            ], 200);
+        }
     }
 
     /**
@@ -82,5 +104,8 @@ class AcademicController extends Controller
     public function destroy(Academic $academic)
     {
         //
+        if ($academic->delete()) {
+            return redirect()->route('hmm.academic.index');
+        }
     }
 }

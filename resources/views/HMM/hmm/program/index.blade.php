@@ -1,11 +1,11 @@
 @extends('HMM.layouts.app')
 
 @section('content')
-    <h3 class="mt-2"><i><strong>Academic Year</strong></i></h3>
+    <h3 class="mt-2"><i><strong>Program</strong></i></h3>
 
     <div class="row">
         <div class="col-8">
-            <a href="{{ route('hmm.academic.create') }}" class="btn btn-sm btn-success text-uppercase"
+            <a href="{{ route('hmm.program.create') }}" class="btn btn-sm btn-success text-uppercase"
                 style="width: 10rem;height: 30px;"><strong>create</strong></a>
         </div>
 
@@ -42,12 +42,12 @@
 
     {{-- loop data  --}}
     <div class="row">
-        @foreach ($academics as $academic)
+        @foreach ($programs as $program)
             <div class="col-4">
-                <a href="{{ route('hmm.academic.edit', $academic->id) }}" class="text-decoration-none text-dark">
+                <a href="{{ route('hmm.program.edit', $program->id) }}" class="text-decoration-none text-dark">
                     <div class="card p-4 mb-3">
                         <div class="card-content px-3">
-                            <h4 class="">{{ $academic->name }}</h4>
+                            <h4 class="">{{ $program->name }}</h4>
                         </div>
                     </div>
                 </a>

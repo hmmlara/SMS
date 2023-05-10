@@ -15,6 +15,9 @@ class ProgramController extends Controller
     public function index()
     {
         //
+        $programs = Program::orderBy('id', 'DESC')->get();
+
+        return view('HMM.hmm.program.index', ['programs' => $programs]);
     }
 
     /**
@@ -25,6 +28,8 @@ class ProgramController extends Controller
     public function create()
     {
         //
+        return view('HMM.hmm.program.create');
+
     }
 
     /**
@@ -36,6 +41,11 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(["name" => "required"]);
+
+        if (Program::create($request->all())) {
+            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
+        }
     }
 
     /**
@@ -58,6 +68,8 @@ class ProgramController extends Controller
     public function edit(Program $program)
     {
         //
+        return view('HMM.hmm.program.view', ['program' => $program]);
+
     }
 
     /**
@@ -70,6 +82,17 @@ class ProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        if ($program->update($request->all())) {
+
+            return response()->json([
+                'status' => 204,
+                'message' => 'Successfully Updated'
+            ], 200);
+        }
     }
 
     /**
@@ -81,5 +104,8 @@ class ProgramController extends Controller
     public function destroy(Program $program)
     {
         //
+        if ($program->delete()) {
+            return redirect()->route('hmm.program.index');
+        }
     }
 }
