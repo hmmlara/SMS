@@ -24,7 +24,6 @@ class CreatePaymentsTable extends Migration
 
             $table->string('invoice_no');
             $table->date('invoice_date');
-            $table->decimal('total_cost');
             $table->timestamps();
         });
     }
