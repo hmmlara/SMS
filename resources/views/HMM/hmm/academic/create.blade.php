@@ -1,63 +1,57 @@
 @extends('HMM.layouts.app')
 
 @section('content')
-    <h3 class="mt-2"><i><strong>Academic Year</strong></i></h3>
 
-    <button class="btn btn-sm btn-success text-uppercase" style="width: 10rem;height: 30px;"
-        id="save"><strong>Save</strong></button>
-    <a href="{{ route('hmm.academic.index') }}" class="btn btn-sm btn-light text-uppercase"
-        style="width: 10rem;height: 30px;"><strong>Discard</strong></a>
+<main class="content">
+    <div class="container-fluid p-0">
 
-    <hr>
+        <h1 class="h3 mb-3"><strong>Academic</strong> Year</h1>
 
-    <div class="card p-3">
-        <div class="card-content">
-            <h4 class="mb-3"><strong>New Academic Year</strong></h4>
-        </div>
         <div class="row">
-            <div class="form-group d-flex">
-                <label for="" class="form-label me-2">Academic Year: </label>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="input-gp w-100">
-                    <input type="text" name="name" id="" class="form-control w-50" style="height: 30px;"
-                        placeholder="Enter academic year">
-                    <small class="text-danger" id="error-msg"></small>
-                </div>
+            <div class="col-md-3 mb-3">
+                <a href="{{route('hmm.academic.index')}}" class="btn btn-success">Back</a>
             </div>
         </div>
-    </div>
 
-    <script>
-        $('input[name="name"]').on('focus',function(){
-            $('input[name="name"]').removeClass('form-control border border-danger');
-            $(this).addClass('form-control');
-            $('#error-msg').text("");
-        });
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
 
-        $('#save').on('click', function() {
-            let name  = $('input[name="name"]').val();
-            let _token = $('input[name="_token"]').val();
+                        <h5 class="card-title mb-0">Academic Year</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('hmm.academic.store')}}" method="post">
+                            @csrf
+                            <div class="row my-3">
+                                <div class="col-md-12">                                    
+                                    <label for="" class="form-label">Academic Year</label>
+                                    <input type="text" name="name" id="" class="form-control">
+                                    @error('name')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                </div>
+                                                                        
+                                    <div class="row my-3">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-success">Add Academic Year</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
 
-            let data = {
-                _token: _token,
-                "name": name
-            };
-            // console.log(data);
-            $.ajax({
-                type: "POST",
-                url: "/hmm-group/hmm/academic",
-                data: data,
-                success: function(response) {
-                    if (response.status == 201) {
-                        window.location.href = '/hmm-group/hmm/academic';
-                    }
-                },
-                error: function(response) {
-                    $('input[name="name"]').addClass('form-control border border-danger');
-                    $('#error-msg').text(response.responseJSON.errors.name);
-                }
-            });
-        });
-    </script>
+        {{-- <div class="row">
+            <div class="col md-12">
+                {{$courses->links('pagination::bootstrap-4')}}
+            </div>
+        </div> --}}
+</main>
+
 @endsection

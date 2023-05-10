@@ -1,7 +1,6 @@
 @extends('HMM.layouts.app')
 
 @section('content')
-
 <main class="content">
     <div class="container-fluid p-0">
 
@@ -21,12 +20,13 @@
                         <h5 class="card-title mb-0">Program</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('hmm.program.store')}}" method="post">
+                        <form action="{{route('hmm.program.update', $program->id)}}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="row my-3">
                                 <div class="col-md-12">                                    
                                     <label for="" class="form-label">Program</label>
-                                    <input type="text" name="name" id="" class="form-control">
+                                    <input type="text" name="name" id="" class="form-control" value="{{ $program->name }}">
                                     @error('name')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
@@ -35,7 +35,7 @@
                                                                         
                                     <div class="row my-3">
                                         <div class="col-md-12">
-                                            <button class="btn btn-success">Add Program</button>
+                                            <button class="btn btn-success">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -45,6 +45,8 @@
                     </div>
                 </div>
             </div>
+            
 </main>
+
 
 @endsection

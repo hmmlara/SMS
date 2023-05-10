@@ -43,9 +43,10 @@ class ProgramController extends Controller
         //
         $request->validate(["name" => "required"]);
 
-        if (Program::create($request->all())) {
-            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
-        }
+        Program::create([
+            'name' => $request->name
+        ]);
+        return redirect()->route('hmm.program.index');
     }
 
     /**
@@ -68,7 +69,7 @@ class ProgramController extends Controller
     public function edit(Program $program)
     {
         //
-        return view('HMM.hmm.program.view', ['program' => $program]);
+        return view('HMM.hmm.program.edit', ['program' => $program]);
 
     }
 
@@ -87,11 +88,7 @@ class ProgramController extends Controller
         ]);
 
         if ($program->update($request->all())) {
-
-            return response()->json([
-                'status' => 204,
-                'message' => 'Successfully Updated'
-            ], 200);
+            return redirect()->route('hmm.program.index');
         }
     }
 

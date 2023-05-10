@@ -42,10 +42,10 @@ class AcademicController extends Controller
     {
         //
         $request->validate(["name" => "required"]);
-
-        if (Academic::create($request->all())) {
-            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
-        }
+        Academic::create([
+            'name' => $request->name
+        ]);
+        return redirect()->route('hmm.academic.index');
     }
 
     /**
@@ -68,7 +68,7 @@ class AcademicController extends Controller
     public function edit(Academic $academic)
     {
         //
-        return view('HMM.hmm.academic.view', ['academic' => $academic]);
+        return view('HMM.hmm.academic.edit', ['academic' => $academic]);
 
     }
 
@@ -87,11 +87,7 @@ class AcademicController extends Controller
         ]);
 
         if ($academic->update($request->all())) {
-
-            return response()->json([
-                'status' => 204,
-                'message' => 'Successfully Updated'
-            ], 200);
+            return redirect()->route('hmm.academic.index');
         }
     }
 
