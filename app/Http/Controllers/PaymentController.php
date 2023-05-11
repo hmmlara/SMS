@@ -28,7 +28,7 @@ class PaymentController extends Controller
     {
         //
         $descriptions = Description::all();
-        return view('HMM.payment.payment.create',['descriptions' => $descriptions]);
+        return view('HMM.payment.payment.create', ['descriptions' => $descriptions]);
     }
 
     /**
@@ -39,8 +39,9 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
+
 
     /**
      * Display the specified resource.

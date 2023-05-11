@@ -49,7 +49,7 @@ class DescriptionController extends Controller
         ]);
 
         if (Description::create($request->all())) {
-            return response()->json(["status" => 201, 'message' => 'successfully created'], 201);
+            return redirect()->route('payment.description.index');
         }
     }
 
@@ -73,7 +73,7 @@ class DescriptionController extends Controller
     public function edit(Description $description)
     {
         //
-        return view('HMM.payment.description.view', ['description' => $description]);
+        return view('HMM.payment.description.edit', ['description' => $description]);
     }
 
     /**
@@ -94,10 +94,8 @@ class DescriptionController extends Controller
 
         if ($description->update($request->all())) {
 
-            return response()->json([
-                'status' => 204,
-                'message' => 'Successfully Updated'
-            ],200);
+            return redirect()->route('payment.description.index');
+
         }
     }
 

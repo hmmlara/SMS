@@ -25,7 +25,7 @@
     <div class="row">
         @foreach ($academics as $academic)
             <div class="col-4">
-                <a href="{{ route('hmm.academic.edit', $academic->id) }}" class="text-decoration-none text-dark">
+                <a href="{{ route('hmm.academic.edit', $academic->id) }}" class="text-decoration-none text-dark" title="tap to edit">
                     <div class="card p-4 mb-3">
                         <div class="card-content px-3">
                             <h4 class="">{{ $academic->name }}</h4>
@@ -33,7 +33,7 @@
                                 @csrf
                                 @method('delete')
                                 <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-light-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                <button type="submit" class="btn btn-light-danger btn-sm" title="delete"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </form>
                         </div>

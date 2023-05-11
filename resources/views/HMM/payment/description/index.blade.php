@@ -16,25 +16,6 @@
                         style="height: 30px">
                 </form>
             </div>
-            <div class="row mt-2">
-                <div class="col-9">
-                    <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-filter"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-dark" href="#">Action</a>
-                            <a class="dropdown-item text-dark" href="#">Another action</a>
-                            <a class="dropdown-item text-dark" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-sm"><i class="fa fa-th-large"></i></button>
-                    <button class="btn btn-sm"><i class="fa fa-list"></i></button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -44,10 +25,19 @@
     <div class="row">
         @foreach ($descriptions as $description)
             <div class="col-4">
-                <a href="{{ route('payment.description.edit', $description->id) }}" class="text-decoration-none text-dark">
+                <a href="{{ route('payment.description.edit', $description->id) }}" class="text-decoration-none text-dark" title="tap to edit">
                     <div class="card p-4 mb-3">
                         <div class="card-content px-3">
                             <h4 class="">{{ $description->title }}</h4>
+                            <h6 class="text-success">Unit:   {{ $description->units }}</h6>
+                            <h6 class="text-success">Cost:   {{ $description->cost }} MMK</h6>
+                            <form action="{{ route('payment.description.destroy', $description->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt" title="delete"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </a>

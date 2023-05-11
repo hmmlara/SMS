@@ -18,4 +18,8 @@ class Payment extends Model
     public function descriptions(){
         return $this->belongsToMany(Description::class,"description_payments");
     }
+
+    public function studentPersonal(){
+        $this->belongsTo(StudentPersonal::class);
+    }
 }
