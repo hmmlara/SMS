@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
  */
 
 
+ Route::get('/', function () {
+    return view('welcome');
+});
 Route::group(['prefix' => 'hmm-group', 'namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('home','HomeController@home')->name('hmm-group.home');
@@ -37,4 +40,11 @@ Route::group(['prefix' => 'hmm-group', 'namespace' => 'App\Http\Controllers'], f
         Route::resource('invoice', InvoiceController::class);
         Route::resource('payment', PaymentController::class);
     });
+
+    // Exam
+    Route::prefix('exam')->name('exam.')->group(function(){
+        Route::resource('examtype',ExamTypeController::class);
+        Route::resource('exam',ExamController::class);
+        Route::resource('mark',MarkController::class);
+   });
 });

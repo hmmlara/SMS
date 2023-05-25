@@ -43,6 +43,20 @@
                         <a class="nav-link {{ request()->segment(3) == 'payment' ? 'active' : '' }}"
                             href="{{ route('payment.payment.index') }}">Payment</span></a>
                     </li>
+
+                @elseif (request()->segment(2) == 'exam')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(3) == 'exam' ? 'active' : '' }}"
+                            href="{{ route('exam.exam.index') }}">Exam</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(3) == 'examtype' ? 'active' : '' }}"
+                            href="{{ route('exam.examtype.index') }}">ExamType</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(3) == 'mark' ? 'active' : '' }}"
+                            href="{{ route('exam.mark.index') }}">Mark</span></a>
+                    </li>
                 @endif
             </ul>
         </div>

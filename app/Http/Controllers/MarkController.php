@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExamRequest;
+use App\Models\Exam;
+use App\Models\ExamType;
 use App\Models\Mark;
+use App\Models\StudentPersonal;
 use Illuminate\Http\Request;
 
 class MarkController extends Controller
@@ -12,9 +16,23 @@ class MarkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $marks;
+    public $students;
+    public $exams;
+    public $examtypes;
+
+    public function __construct()
+    {
+        $this->marks=Mark::all();
+        $this->students=StudentPersonal::all();
+        $this->exams=Exam::all();
+        $this->examtypes=ExamType::all();
+
+    }
     public function index()
     {
         //
+        return view('HMM.examCategory.mark.index');
     }
 
     /**
@@ -25,6 +43,8 @@ class MarkController extends Controller
     public function create()
     {
         //
+        $exams = Exam::with('examtype')->get();
+        return view('HMM.examCategory.mark.create',['students'=>$this->students,'exams'=>$exams]);
     }
 
     /**
@@ -33,9 +53,10 @@ class MarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExamRequest $request)
     {
         //
+
     }
 
     /**

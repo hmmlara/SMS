@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExamRequest;
 use App\Models\ExamType;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,16 @@ class ExamTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $examtypes;
+
+    public function __construct()
+    {
+        $this->examtypes=ExamType::all();
+    }
+
     public function index()
     {
-        //
+        return view('HMM.examCategory.examtype.index',['examtypes'=>$this->examtypes]);
     }
 
     /**
@@ -25,6 +33,7 @@ class ExamTypeController extends Controller
     public function create()
     {
         //
+        return view('HMM.examCategory.examtype.create');
     }
 
     /**
@@ -33,10 +42,14 @@ class ExamTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExamRequest $request)
     {
-        //
+        if(ExamType::create($request->all())){
+            return redirect()->route('exam.examtype.index');
+        }
+
     }
+
 
     /**
      * Display the specified resource.
@@ -55,9 +68,14 @@ class ExamTypeController extends Controller
      * @param  \App\Models\ExamType  $examType
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExamType $examType)
+    public function edit($id)
     {
         //
+        $examtype = $this->examtypes->find($id);
+    if (!$examtype) {
+        abort(404);
+    }
+    return view('HMM.examCategory.examtype.edit', ['examtype' => $examtype]);
     }
 
     /**
@@ -67,9 +85,13 @@ class ExamTypeController extends Controller
      * @param  \App\Models\ExamType  $examType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExamType $examType)
+    public function update(ExamRequest $request, $id)
     {
         //
+        $examtype=$this->examtypes->find($id);
+        $examtype->update($request->all());
+        return redirect()->route('exam.examtype.index');
+
     }
 
     /**
@@ -78,8 +100,11 @@ class ExamTypeController extends Controller
      * @param  \App\Models\ExamType  $examType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExamType $examType)
+    public function destroy($id)
     {
         //
+        $examtype=$this->examtypes->find($id);
+        $examtype->delete();
+        return redirect()->route('exam.examtype.index');
     }
 }
